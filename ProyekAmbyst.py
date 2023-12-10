@@ -5,8 +5,8 @@ import plotly.express as px
 st.title("Visualisasi Data Covid-19")
 st.write("oleh Kelompok Ambyst")
 
-df = pd.read_csv('raw_data.csv')
-#df = pd.read_csv('raw_data.csv')
+df = pd.read_csv('Data_Covid19_Kelompok_Ambyst.csv')
+#df = pd.read_csv('Data_Covid19_Kelompok_Ambyst.csv')
 
 
 st.write("## 5 data pertama")
@@ -16,7 +16,7 @@ st.write("## Info Data")
 st.write( df.describe() )
 
 # Load data dari CSV
-file_path = "raw_data.csv"  # Menggunakan nama file "raw_data.csv"
+file_path = "Data_Covid19_Kelompok_Ambyst.csv"  # Menggunakan nama file "Data_Covid19_Kelompok_Ambyst.csv"
 data = pd.read_csv(file_path)
 
 # Konversi kolom 'date' ke tipe data datetime

@@ -43,3 +43,20 @@ st.plotly_chart(histogram_cases)
 
 histogram_deaths = create_histogram_total_deaths()
 st.plotly_chart(histogram_deaths)
+
+# Menampilkan pilihan negara di dropdown
+available_countries = data['location'].unique()
+selected_country = st.selectbox('Select Country', available_countries)
+
+# Filter data berdasarkan negara yang dipilih
+filtered_data = data[data['location'] == selected_country]
+
+# Membuat histogram total_cases, total_deaths, dan population menggunakan Plotly Express
+fig_cases = px.histogram(filtered_data, x='date', y='total_cases', title=f'Histogram Total Cases for {selected_country}')
+fig_cases.update_layout(xaxis_title='Date', yaxis_title='Total Cases')
+
+fig_deaths = px.histogram(filtered_data, x='date', y='total_deaths', title=f'Histogram Total Deaths for {selected_country}')
+fig_deaths.update_layout(xaxis_title='Date', yaxis_title='Total Deaths')
+
+fig_population = px.histogram(filtered_data, x='date', y='population', title=f'Histogram Population for {selected_country}')
+fig_population.update_layout(xaxis_title='Date', yaxis_title='Population')

@@ -4,6 +4,13 @@ import plotly.express as px
 
 st.title("Visualisasi Data Covid-19")
 st.write("oleh Kelompok Ambyst")
+st.write("""Nama kelompok:
+1. Gabriella Nathalie (021002214005)
+2. Marini Wulandari (021002214006)
+3. Meita Indah Fadilla (021002214007)
+4. Muhammad Rizki (021002214008)
+
+S1 Ekonomi Pembangunan""")
 
 df = pd.read_csv('Data_Covid19_Kelompok_Ambyst.csv')
 #df = pd.read_csv('Data_Covid19_Kelompok_Ambyst.csv')
@@ -74,3 +81,6 @@ st.plotly_chart(fig_deaths)
 
 st.subheader('Histogram Population')
 st.plotly_chart(fig_population)
+
+# Meita : Menampilkan pilihan opsi
+option = st.selectbox('Choose an option for Line Chart', ('Total Cases', 'Total Deaths', 'Population'))

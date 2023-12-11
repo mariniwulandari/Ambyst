@@ -84,3 +84,18 @@ st.plotly_chart(fig_population)
 
 # Meita : Menampilkan pilihan opsi
 option = st.selectbox('Choose an option for Line Chart', ('Total Cases', 'Total Deaths', 'Population'))
+
+# Meita : Membuat grafik garis berdasarkan opsi yang dipilih
+if option == 'Total Cases':
+    fig_line = px.line(data, x='date', y='total_cases', color='iso_code',
+                       title='Total Cases per Country Over Time',
+                       labels={'total_cases': 'Total Cases', 'date': 'Date'})
+elif option == 'Total Deaths':
+    fig_line = px.line(data, x='date', y='total_deaths', color='iso_code',
+                       title='Total Deaths per Country Over Time',
+                       labels={'total_deaths': 'Total Deaths', 'date': 'Date'})
+else:
+    fig_line = px.line(data, x='date', y='population', color='iso_code',
+                       title='Population per Country Over Time',
+                       labels={'population': 'Population', 'date': 'Date'})
+st.plotly_chart(fig_line)

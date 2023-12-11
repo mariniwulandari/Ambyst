@@ -60,3 +60,17 @@ fig_deaths.update_layout(xaxis_title='Date', yaxis_title='Total Deaths')
 
 fig_population = px.histogram(filtered_data, x='date', y='population', title=f'Histogram Population for {selected_country}')
 fig_population.update_layout(xaxis_title='Date', yaxis_title='Population')
+
+# Meita : Menampilkan hasil di Streamlit
+st.title(f'Histograms for {selected_country}')
+st.write("Data Awal:")
+st.write(filtered_data.head())
+
+st.subheader('Histogram Total Cases')
+st.plotly_chart(fig_cases)
+
+st.subheader('Histogram Total Deaths')
+st.plotly_chart(fig_deaths)
+
+st.subheader('Histogram Population')
+st.plotly_chart(fig_population)

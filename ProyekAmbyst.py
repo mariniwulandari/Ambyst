@@ -3,6 +3,7 @@ import pandas as pd
 import plotly.express as px
 
 st.title("Visualisasi Data Covid-19")
+st.image("Covid.jpg")
 st.write("oleh Kelompok Ambyst")
 st.write("""Nama kelompok:
 1. Gabriella Nathalie (021002214005)
@@ -50,6 +51,29 @@ st.plotly_chart(histogram_cases)
 
 histogram_deaths = create_histogram_total_deaths()
 st.plotly_chart(histogram_deaths)
+
+# Mendapatkan total total_cases, total_deaths, dan population secara keseluruhan
+total_cases_total = data['total_cases'].sum()
+total_deaths_total = data['total_deaths'].sum()
+total_population_total = data['population'].sum()
+
+# Membuat DataFrame baru untuk pie chart
+pie_data_total = pd.DataFrame({
+    'Categories': ['Total Cases', 'Total Deaths', 'Total Population'],
+    'Values': [total_cases_total, total_deaths_total, total_population_total]
+})
+
+
+# Membuat pie chart perbandingan total_cases, total_deaths, dan total_population secara keseluruhan
+fig_pie_total = px.pie(pie_data_total, values='Values', names='Categories', title='Comparison of Cases, Deaths, and Population Overall')
+
+# Menampilkan pie chart di Streamlit
+st.title('Comparison of Cases, Deaths, and Population Overall')
+st.plotly_chart(fig_pie_total)
+
+# Menampilkan rincian total_cases dan total_deaths secara keseluruhan
+st.write(f"Total Kasus secara total: {total_cases_total}")
+st.write(f"Total Kematian secara total: {total_deaths_total}")
 
 # Menampilkan pilihan negara di dropdown
 available_countries = data['location'].unique()
@@ -99,3 +123,24 @@ else:
                        title='Population per Country Over Time',
                        labels={'population': 'Population', 'date': 'Date'})
 st.plotly_chart(fig_line)
+
+# Menampilkan pilihan negara di dropdown
+available_countries = data['location'].unique()
+selected_country = st.selectbox('Pilih Negara', available_countries)
+
+# Filter data berdasarkan negara yang dipilih
+filtered_data = data[data['location'] == selected_country]
+
+# Menghitung total kasus dan total kematian per negara
+total_cases = filtered_data['total_cases'].iloc[-1]  # Mengambil data terbaru
+total_deaths = filtered_data['total_deaths'].iloc[-1]  # Mengambil data terbaru
+
+# Menampilkan hasil perbandingan
+st.write(f"Total Kasus di {selected_country}: {total_cases}")
+st.write(f"Total Kematian di {selected_country}: {total_deaths}")
+
+# Membuat diagram lingkaran untuk perbandingan total kasus dan total kematian
+fig = px.pie(values=[total_cases, total_deaths], names=['Total Cases', 'Total Deaths'],
+             title=f"Perbandingan Total Kasus dan Total Kematian di {selected_country}")
+
+st.plotly_chart(fig)

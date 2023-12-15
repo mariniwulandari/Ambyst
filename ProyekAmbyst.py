@@ -6,7 +6,7 @@ st.title("Visualisasi Data Covid-19")
 st.image("Covid.jpg")
 st.write("oleh Kelompok Ambyst")
 st.write("""Nama kelompok:
-1. Gabriella Nathalie (021002214005)
+1. Gabriella Natalie (021002214005)
 2. Marini Wulandari (021002214006)
 3. Meita Indah Fadilla (021002214007)
 4. Muhammad Rizki (021002214008)
@@ -144,3 +144,32 @@ fig = px.pie(values=[total_cases, total_deaths], names=['Total Cases', 'Total De
              title=f"Perbandingan Total Kasus dan Total Kematian di {selected_country}")
 
 st.plotly_chart(fig)
+
+# Gabriella
+st.subheader('Peta Sebaran Kasus, Kematian, dan Populasi Dunia')
+st.write("""Dampak COVID-19 terhadap jumlah kasus, kematian, dan populasi dunia sangatlah luas dan kompleks. Dampak langsung dan tidak langsung pandemi ini telah menyebabkan kerugian yang sangat besar, baik secara ekonomi, sosial, maupun kesehatan. Untuk mengatasi dampak COVID-19, diperlukan upaya yang berkelanjutan dari berbagai pihak, baik pemerintah, swasta, maupun masyarakat.""")
+
+
+# Menampilkan pilihan opsi
+option = st.selectbox('Pilih data yang ingin ditampilkan', ('Total Kasus', 'Total Kematian', 'Populasi'))
+
+# Membuat peta dunia berdasarkan opsi yang dipilih
+if option == 'Total Kasus':
+    fig_map = px.choropleth(data, locations='iso_code', color='total_cases',
+                            hover_name='location', color_continuous_scale='Viridis',
+                            title='Peta Sebaran Total Kasus')
+elif option == 'Total Kematian':
+    fig_map = px.choropleth(data, locations='iso_code', color='total_deaths',
+                            hover_name='location', color_continuous_scale='Reds',
+                            title='Peta Sebaran Total Kematian')
+else:
+    fig_map = px.choropleth(data, locations='iso_code', color='population',
+                            hover_name='location', color_continuous_scale='Blues',
+                            title='Peta Sebaran Populasi')
+
+# Menampilkan peta pada Streamlit
+st.plotly_chart(fig_map)
+
+# Kesimpulan
+st.subheader('Kesimpulan')
+st.write("""Pandemi COVID-19 memicu kemerosotan ekonomi global, menyebabkan hilangnya lapangan kerja dan terganggunya rantai pasokan. Pemerintah meresponsnya dengan bantuan keuangan, dan beberapa industri berkembang pesat sementara industri lainnya menghadapi tantangan yang signifikan. Hingga detik ini, dunia masih dalam masa pemulihan pasca pandemi COVID-19.""")

@@ -145,7 +145,10 @@ fig = px.pie(values=[total_cases, total_deaths], names=['Total Cases', 'Total De
 
 st.plotly_chart(fig)
 
+
 # Gabriella
+st.divider()
+
 st.subheader('Peta Sebaran Kasus, Kematian, dan Populasi Dunia')
 st.write("""Dampak COVID-19 terhadap jumlah kasus, kematian, dan populasi dunia sangatlah luas dan kompleks. Dampak langsung dan tidak langsung pandemi ini telah menyebabkan kerugian yang sangat besar, baik secara ekonomi, sosial, maupun kesehatan. Untuk mengatasi dampak COVID-19, diperlukan upaya yang berkelanjutan dari berbagai pihak, baik pemerintah, swasta, maupun masyarakat.""")
 
@@ -170,6 +173,11 @@ else:
 # Menampilkan peta pada Streamlit
 st.plotly_chart(fig_map)
 
+st.divider()
+
 # Kesimpulan
 st.subheader('Kesimpulan')
 st.write("""Pandemi COVID-19 memicu kemerosotan ekonomi global, menyebabkan hilangnya lapangan kerja dan terganggunya rantai pasokan. Pemerintah meresponsnya dengan bantuan keuangan, dan beberapa industri berkembang pesat sementara industri lainnya menghadapi tantangan yang signifikan. Hingga detik ini, dunia masih dalam masa pemulihan pasca pandemi COVID-19.""")
+
+
+

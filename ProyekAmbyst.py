@@ -173,6 +173,56 @@ else:
 # Menampilkan peta pada Streamlit
 st.plotly_chart(fig_map)
 
+# Menampilkan opsi tanggal pada awal tahun, pertengahan, dan akhir tahun
+start_date = pd.to_datetime('2020-01-01')
+mid_date = pd.to_datetime('2020-05-01')
+end_date = pd.to_datetime('2020-10-19')
+
+# Filter data berdasarkan tanggal yang dipilih
+filtered_data_start = data[data['date'] == start_date]
+filtered_data_mid = data[data['date'] == mid_date]
+filtered_data_end = data[data['date'] == end_date]
+
+# Membuat peta dunia berdasarkan tanggal tertentu
+if option == 'Total Kasus':
+    fig_map_start = px.choropleth(filtered_data_start, locations='iso_code', color='total_cases',
+                                  hover_name='location', color_continuous_scale='Viridis',
+                                  title=f'Peta Sebaran Total Kasus pada {start_date}')
+    fig_map_mid = px.choropleth(filtered_data_mid, locations='iso_code', color='total_cases',
+                                 hover_name='location', color_continuous_scale='Viridis',
+                                 title=f'Peta Sebaran Total Kasus pada {mid_date}')
+    fig_map_end = px.choropleth(filtered_data_end, locations='iso_code', color='total_cases',
+                                 hover_name='location', color_continuous_scale='Viridis',
+                                 title=f'Peta Sebaran Total Kasus pada {end_date}')
+# Membuat peta dunia berdasarkan tanggal tertentu untuk Total Kematian
+if option == 'Total Kematian':
+    fig_map_start = px.choropleth(filtered_data_start, locations='iso_code', color='total_deaths',
+                                  hover_name='location', color_continuous_scale='Reds',
+                                  title=f'Peta Sebaran Total Kematian pada {start_date}')
+    fig_map_mid = px.choropleth(filtered_data_mid, locations='iso_code', color='total_deaths',
+                                 hover_name='location', color_continuous_scale='Reds',
+                                 title=f'Peta Sebaran Total Kematian pada {mid_date}')
+    fig_map_end = px.choropleth(filtered_data_end, locations='iso_code', color='total_deaths',
+                                 hover_name='location', color_continuous_scale='Reds',
+                                 title=f'Peta Sebaran Total Kematian pada {end_date}')
+
+# Membuat peta dunia berdasarkan tanggal tertentu untuk Populasi
+elif option == 'Populasi':
+    fig_map_start = px.choropleth(filtered_data_start, locations='iso_code', color='population',
+                                  hover_name='location', color_continuous_scale='Blues',
+                                  title=f'Peta Sebaran Populasi pada {start_date}')
+    fig_map_mid = px.choropleth(filtered_data_mid, locations='iso_code', color='population',
+                                 hover_name='location', color_continuous_scale='Blues',
+                                 title=f'Peta Sebaran Populasi pada {mid_date}')
+    fig_map_end = px.choropleth(filtered_data_end, locations='iso_code', color='population',
+                                 hover_name='location', color_continuous_scale='Blues',
+                                 title=f'Peta Sebaran Populasi pada {end_date}')
+
+# Menampilkan peta pada Streamlit
+st.plotly_chart(fig_map_start)
+st.plotly_chart(fig_map_mid)
+st.plotly_chart(fig_map_end)
+
 st.divider()
 
 # Kesimpulan

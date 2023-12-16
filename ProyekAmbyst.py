@@ -99,3 +99,5 @@ else:
                        title='Population per Country Over Time',
                        labels={'population': 'Population', 'date': 'Date'})
 st.plotly_chart(fig_line)
+
+st.write("""Sumber:Kaggle - Impact of COVID-19 Geographic Visualization (https://www.kaggle.com/code/nayuts/impact-of-covid-19-geographic-visualization/notebook)""")

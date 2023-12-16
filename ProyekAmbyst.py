@@ -177,6 +177,7 @@ st.divider()
 
 # Kesimpulan
 st.subheader('Kesimpulan')
+st.image('masker.jpg', caption='COVID-19 membuat manusia memasuki era kebiasaan baru, salah satunya adalah kebutuhan terhadap pemakaian masker. (Sumber: halodoc.com)')
 st.write("""Pandemi COVID-19 memicu kemerosotan ekonomi global, menyebabkan hilangnya lapangan kerja dan terganggunya rantai pasokan. Pemerintah meresponsnya dengan bantuan keuangan, dan beberapa industri berkembang pesat sementara industri lainnya menghadapi tantangan yang signifikan. Hingga detik ini, dunia masih dalam masa pemulihan pasca pandemi COVID-19.""")
 
 

@@ -17,10 +17,10 @@ df = pd.read_csv('Data_Covid19_Kelompok_Ambyst.csv')
 #df = pd.read_csv('Data_Covid19_Kelompok_Ambyst.csv')
 
 
-st.write("## 5 data pertama")
+st.write("## A. Tampilan 5 data pertama dari Data Covid-19")
 st.write( df.head() )
 
-st.write("## Info Data")
+st.write("## B. Statistik Dasar Data Covid-19")
 st.write( df.describe() )
 
 # Load data dari CSV
@@ -42,7 +42,7 @@ def create_histogram_total_deaths():
     return fig
 
 # Menampilkan hasil di Streamlit
-st.title('Histogram Total Cases and Total Deaths per Date')
+st.title("C. Histogram Total Cases and Total Deaths per Date")
 st.write("Data Awal:")
 st.write(data.head())
 
@@ -68,7 +68,7 @@ pie_data_total = pd.DataFrame({
 fig_pie_total = px.pie(pie_data_total, values='Values', names='Categories', title='Comparison of Cases, Deaths, and Population Overall')
 
 # Menampilkan pie chart di Streamlit
-st.title('Comparison of Cases, Deaths, and Population Overall')
+st.title('D. Comparison of Cases, Deaths, and Population Overall')
 st.plotly_chart(fig_pie_total)
 
 # Menampilkan rincian total_cases dan total_deaths secara keseluruhan
@@ -97,13 +97,13 @@ st.title(f'Histograms for {selected_country}')
 st.write("Data Awal:")
 st.write(filtered_data.head())
 
-st.subheader('Histogram Total Cases')
+st.subheader('1. Histogram Total Cases')
 st.plotly_chart(fig_cases)
 
-st.subheader('Histogram Total Deaths')
+st.subheader('2. Histogram Total Deaths')
 st.plotly_chart(fig_deaths)
 
-st.subheader('Histogram Population')
+st.subheader('3. Histogram Population')
 st.plotly_chart(fig_population)
 
 # Meita : Menampilkan pilihan opsi

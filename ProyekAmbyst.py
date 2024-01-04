@@ -159,7 +159,7 @@ option = st.selectbox('Pilih data yang ingin ditampilkan', ('Total Kasus', 'Tota
 # Membuat peta dunia berdasarkan opsi yang dipilih
 if option == 'Total Kasus':
     fig_map = px.choropleth(data, locations='iso_code', color='total_cases',
-                            hover_name='location', color_continuous_scale='Viridis',
+                            hover_name='location', color_continuous_scale='Viridis_r',
                             title='Peta Sebaran Total Kasus')
 elif option == 'Total Kematian':
     fig_map = px.choropleth(data, locations='iso_code', color='total_deaths',
@@ -186,13 +186,13 @@ filtered_data_end = data[data['date'] == end_date]
 # Membuat peta dunia berdasarkan tanggal tertentu
 if option == 'Total Kasus':
     fig_map_start = px.choropleth(filtered_data_start, locations='iso_code', color='total_cases',
-                                  hover_name='location', color_continuous_scale='Viridis',
+                                  hover_name='location', color_continuous_scale='Viridis_r',
                                   title=f'Peta Sebaran Total Kasus pada {start_date}')
     fig_map_mid = px.choropleth(filtered_data_mid, locations='iso_code', color='total_cases',
-                                 hover_name='location', color_continuous_scale='Viridis',
+                                 hover_name='location', color_continuous_scale='Viridis_r',
                                  title=f'Peta Sebaran Total Kasus pada {mid_date}')
     fig_map_end = px.choropleth(filtered_data_end, locations='iso_code', color='total_cases',
-                                 hover_name='location', color_continuous_scale='Viridis',
+                                 hover_name='location', color_continuous_scale='Viridis_r',
                                  title=f'Peta Sebaran Total Kasus pada {end_date}')
 # Membuat peta dunia berdasarkan tanggal tertentu untuk Total Kematian
 if option == 'Total Kematian':

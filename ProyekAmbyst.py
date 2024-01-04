@@ -4,6 +4,7 @@ import plotly.express as px
 
 st.title("Visualisasi Data Covid-19")
 st.image("Covid.jpg")
+st.write("Data Covid-19 ini berisikan data terkait jumlah populasi, jumlah kasus Covid-19, dan jumlah kematian pada negara-negara di dunia dari mulai Desember 2019 sampai Oktober 2020.")
 st.write("oleh Kelompok Ambyst")
 st.write("""Nama kelompok:
 1. Gabriella Natalie (021002214005)
@@ -17,11 +18,15 @@ df = pd.read_csv('Data_Covid19_Kelompok_Ambyst.csv')
 #df = pd.read_csv('Data_Covid19_Kelompok_Ambyst.csv')
 
 
-st.write("## A. Tampilan 5 data pertama dari Data Covid-19")
+st.title("A. Tampilan 5 data pertama dari Data Covid-19")
+st.write("Tabel di bawah menampilkan 5 data pertama dari Data Covid-19:")
 st.write( df.head() )
+st.write("Lima data pertama yang ditampilkan berasal dari negara Afganistan, karena Data Covid-19 diurutkan berdasarkan abjad")
 
-st.write("## B. Statistik Dasar Data Covid-19")
+st.title("B. Statistik Dasar Data Covid-19")
+st.write("Berikut merupakan statistik dasar dari Data Covid-19:")
 st.write( df.describe() )
+st.write("Statistik dasar yang ditampilkan seperti nilai rata-rata, standar deviasi, nilai minimum, nilai maksimum, dan nilai kuartil dari masing-masing variable, contohnya adalah total cases yang rata-ratanya sebesar 66,219.2747 kasus dengan nilai minimum sebesar 0 dan maksimum adalah sebesar 8,154,595")
 
 # Load data dari CSV
 file_path = "Data_Covid19_Kelompok_Ambyst.csv"  # Menggunakan nama file "Data_Covid19_Kelompok_Ambyst.csv"
@@ -32,18 +37,19 @@ data['date'] = pd.to_datetime(data['date'])
 
 # Membuat histogram menggunakan Plotly Express
 def create_histogram_total_cases():
-    fig = px.histogram(data, x='date', y='total_cases', title='Histogram Total Cases per Date')
+    fig = px.histogram(data, x='date', y='total_cases', title='2. Histogram Total Cases per Date')
     fig.update_layout(xaxis_title='Date', yaxis_title='Total Cases')
     return fig
 
 def create_histogram_total_deaths():
-    fig = px.histogram(data, x='date', y='total_deaths', title='Histogram Total Deaths per Date')
+    fig = px.histogram(data, x='date', y='total_deaths', title='3. Histogram Total Deaths per Date')
     fig.update_layout(xaxis_title='Date', yaxis_title='Total Deaths')
     return fig
 
 # Menampilkan hasil di Streamlit
 st.title("C. Histogram Total Cases and Total Deaths per Date")
-st.write("Data Awal:")
+st.write("Histogram ini menampilkan data awal, total kasus, dan total kematian per hari:")
+st.write("#### 1. Data Awal:")
 st.write(data.head())
 
 histogram_cases = create_histogram_total_cases()
@@ -68,7 +74,8 @@ pie_data_total = pd.DataFrame({
 fig_pie_total = px.pie(pie_data_total, values='Values', names='Categories', title='Comparison of Cases, Deaths, and Population Overall')
 
 # Menampilkan pie chart di Streamlit
-st.title('D. Comparison of Cases, Deaths, and Population Overall')
+st.title("D. Comparison of Cases, Deaths, and Population Overall")
+st.write("Perbandingan total kasus, kematian, dan populasi ditunjukkan pada pie chart di bawah ini:")
 st.plotly_chart(fig_pie_total)
 
 # Menampilkan rincian total_cases dan total_deaths secara keseluruhan
@@ -77,6 +84,7 @@ st.write(f"Total Kematian secara total: {total_deaths_total}")
 
 # Menampilkan pilihan negara di dropdown
 available_countries = data['location'].unique()
+st.write("## Section ini menampilkan histogram khusus untuk negara terpilih untuk total cases, total deaths, dan total populasinya:")
 selected_country = st.selectbox('Select Country', available_countries)
 
 # Filter data berdasarkan negara yang dipilih
@@ -93,7 +101,7 @@ fig_population = px.histogram(filtered_data, x='date', y='population', title=f'H
 fig_population.update_layout(xaxis_title='Date', yaxis_title='Population')
 
 # Meita : Menampilkan hasil di Streamlit
-st.title(f'Histograms for {selected_country}')
+st.title(f' E. Histograms for {selected_country}')
 st.write("Data Awal:")
 st.write(filtered_data.head())
 
@@ -107,20 +115,21 @@ st.subheader('3. Histogram Population')
 st.plotly_chart(fig_population)
 
 # Meita : Menampilkan pilihan opsi
+st.write("## Opsi lain dalam menampilkan total cases, total deaths, dan total populasi melalui line chart, serta terdapat juga perbandingan total kasus dan total kematian dari negara terpilih:")
 option = st.selectbox('Choose an option for Line Chart', ('Total Cases', 'Total Deaths', 'Population'))
 
 # Meita : Membuat grafik garis berdasarkan opsi yang dipilih
 if option == 'Total Cases':
     fig_line = px.line(data, x='date', y='total_cases', color='iso_code',
-                       title='Total Cases per Country Over Time',
+                       title='1. Total Cases per Country Over Time',
                        labels={'total_cases': 'Total Cases', 'date': 'Date'})
 elif option == 'Total Deaths':
     fig_line = px.line(data, x='date', y='total_deaths', color='iso_code',
-                       title='Total Deaths per Country Over Time',
+                       title='2. Total Deaths per Country Over Time',
                        labels={'total_deaths': 'Total Deaths', 'date': 'Date'})
 else:
     fig_line = px.line(data, x='date', y='population', color='iso_code',
-                       title='Population per Country Over Time',
+                       title='3. Population per Country Over Time',
                        labels={'population': 'Population', 'date': 'Date'})
 st.plotly_chart(fig_line)
 
@@ -141,7 +150,7 @@ st.write(f"Total Kematian di {selected_country}: {total_deaths}")
 
 # Membuat diagram lingkaran untuk perbandingan total kasus dan total kematian
 fig = px.pie(values=[total_cases, total_deaths], names=['Total Cases', 'Total Deaths'],
-             title=f"Perbandingan Total Kasus dan Total Kematian di {selected_country}")
+             title=f"4. Perbandingan Total Kasus dan Total Kematian di {selected_country}")
 
 st.plotly_chart(fig)
 
@@ -149,7 +158,7 @@ st.plotly_chart(fig)
 # Gabriella
 st.divider()
 
-st.subheader('Peta Sebaran Kasus, Kematian, dan Populasi Dunia')
+st.subheader('F. Peta Sebaran Kasus, Kematian, dan Populasi Dunia')
 st.write("""Dampak COVID-19 terhadap jumlah kasus, kematian, dan populasi dunia sangatlah luas dan kompleks. Dampak langsung dan tidak langsung pandemi ini telah menyebabkan kerugian yang sangat besar, baik secara ekonomi, sosial, maupun kesehatan. Untuk mengatasi dampak COVID-19, diperlukan upaya yang berkelanjutan dari berbagai pihak, baik pemerintah, swasta, maupun masyarakat.""")
 
 
@@ -160,15 +169,15 @@ option = st.selectbox('Pilih data yang ingin ditampilkan', ('Total Kasus', 'Tota
 if option == 'Total Kasus':
     fig_map = px.choropleth(data, locations='iso_code', color='total_cases',
                             hover_name='location', color_continuous_scale='Viridis_r',
-                            title='Peta Sebaran Total Kasus')
+                            title='1. Peta Sebaran Total Kasus')
 elif option == 'Total Kematian':
     fig_map = px.choropleth(data, locations='iso_code', color='total_deaths',
                             hover_name='location', color_continuous_scale='Reds',
-                            title='Peta Sebaran Total Kematian')
+                            title='2. Peta Sebaran Total Kematian')
 else:
     fig_map = px.choropleth(data, locations='iso_code', color='population',
                             hover_name='location', color_continuous_scale='Blues',
-                            title='Peta Sebaran Populasi')
+                            title='3. Peta Sebaran Populasi')
 
 # Menampilkan peta pada Streamlit
 st.plotly_chart(fig_map)
@@ -226,7 +235,7 @@ st.plotly_chart(fig_map_end)
 st.divider()
 
 # Kesimpulan
-st.subheader('Kesimpulan')
+st.subheader('G. Kesimpulan')
 st.image('masker.jpg', caption='COVID-19 membuat manusia memasuki era kebiasaan baru, salah satunya adalah kebutuhan terhadap pemakaian masker. (Sumber: halodoc.com)')
 st.write("""Pandemi COVID-19 memicu kemerosotan ekonomi global, menyebabkan hilangnya lapangan kerja dan terganggunya rantai pasokan. Pemerintah meresponsnya dengan bantuan keuangan, dan beberapa industri berkembang pesat sementara industri lainnya menghadapi tantangan yang signifikan. Hingga detik ini, dunia masih dalam masa pemulihan pasca pandemi COVID-19.""")
 

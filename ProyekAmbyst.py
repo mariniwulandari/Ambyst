@@ -158,7 +158,7 @@ st.plotly_chart(fig)
 # Gabriella
 st.divider()
 
-st.subheader('F. Peta Sebaran Kasus, Kematian, dan Populasi Dunia')
+st.title('F. Peta Sebaran Kasus, Kematian, dan Populasi Dunia')
 st.write("""Dampak COVID-19 terhadap jumlah kasus, kematian, dan populasi dunia sangatlah luas dan kompleks. Dampak langsung dan tidak langsung pandemi ini telah menyebabkan kerugian yang sangat besar, baik secara ekonomi, sosial, maupun kesehatan. Untuk mengatasi dampak COVID-19, diperlukan upaya yang berkelanjutan dari berbagai pihak, baik pemerintah, swasta, maupun masyarakat.""")
 
 
@@ -196,36 +196,36 @@ filtered_data_end = data[data['date'] == end_date]
 if option == 'Total Kasus':
     fig_map_start = px.choropleth(filtered_data_start, locations='iso_code', color='total_cases',
                                   hover_name='location', color_continuous_scale='Viridis_r',
-                                  title=f'Peta Sebaran Total Kasus pada {start_date}')
+                                  title=f'1. Peta Sebaran Total Kasus pada {start_date}')
     fig_map_mid = px.choropleth(filtered_data_mid, locations='iso_code', color='total_cases',
                                  hover_name='location', color_continuous_scale='Viridis_r',
-                                 title=f'Peta Sebaran Total Kasus pada {mid_date}')
+                                 title=f'2. Peta Sebaran Total Kasus pada {mid_date}')
     fig_map_end = px.choropleth(filtered_data_end, locations='iso_code', color='total_cases',
                                  hover_name='location', color_continuous_scale='Viridis_r',
-                                 title=f'Peta Sebaran Total Kasus pada {end_date}')
+                                 title=f'3. Peta Sebaran Total Kasus pada {end_date}')
 # Membuat peta dunia berdasarkan tanggal tertentu untuk Total Kematian
 if option == 'Total Kematian':
     fig_map_start = px.choropleth(filtered_data_start, locations='iso_code', color='total_deaths',
                                   hover_name='location', color_continuous_scale='Reds',
-                                  title=f'Peta Sebaran Total Kematian pada {start_date}')
+                                  title=f'1. Peta Sebaran Total Kematian pada {start_date}')
     fig_map_mid = px.choropleth(filtered_data_mid, locations='iso_code', color='total_deaths',
                                  hover_name='location', color_continuous_scale='Reds',
-                                 title=f'Peta Sebaran Total Kematian pada {mid_date}')
+                                 title=f'2. Peta Sebaran Total Kematian pada {mid_date}')
     fig_map_end = px.choropleth(filtered_data_end, locations='iso_code', color='total_deaths',
                                  hover_name='location', color_continuous_scale='Reds',
-                                 title=f'Peta Sebaran Total Kematian pada {end_date}')
+                                 title=f'3. Peta Sebaran Total Kematian pada {end_date}')
 
 # Membuat peta dunia berdasarkan tanggal tertentu untuk Populasi
 elif option == 'Populasi':
     fig_map_start = px.choropleth(filtered_data_start, locations='iso_code', color='population',
                                   hover_name='location', color_continuous_scale='Blues',
-                                  title=f'Peta Sebaran Populasi pada {start_date}')
+                                  title=f'1. Peta Sebaran Populasi pada {start_date}')
     fig_map_mid = px.choropleth(filtered_data_mid, locations='iso_code', color='population',
                                  hover_name='location', color_continuous_scale='Blues',
-                                 title=f'Peta Sebaran Populasi pada {mid_date}')
+                                 title=f'2. Peta Sebaran Populasi pada {mid_date}')
     fig_map_end = px.choropleth(filtered_data_end, locations='iso_code', color='population',
                                  hover_name='location', color_continuous_scale='Blues',
-                                 title=f'Peta Sebaran Populasi pada {end_date}')
+                                 title=f'3. Peta Sebaran Populasi pada {end_date}')
 
 # Menampilkan peta pada Streamlit
 st.plotly_chart(fig_map_start)
@@ -235,7 +235,7 @@ st.plotly_chart(fig_map_end)
 st.divider()
 
 # Kesimpulan
-st.subheader('G. Kesimpulan')
+st.title('G. Kesimpulan')
 st.image('masker.jpg', caption='COVID-19 membuat manusia memasuki era kebiasaan baru, salah satunya adalah kebutuhan terhadap pemakaian masker. (Sumber: halodoc.com)')
 st.write("""Pandemi COVID-19 memicu kemerosotan ekonomi global, menyebabkan hilangnya lapangan kerja dan terganggunya rantai pasokan. Pemerintah meresponsnya dengan bantuan keuangan, dan beberapa industri berkembang pesat sementara industri lainnya menghadapi tantangan yang signifikan. Hingga detik ini, dunia masih dalam masa pemulihan pasca pandemi COVID-19.""")
 
